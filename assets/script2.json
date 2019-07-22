@@ -1,0 +1,87 @@
+[
+    {
+        "fixed2json": {
+            "options": null,
+            "structure": [
+                { 
+                    "match": "^038C",
+                    "struct": [
+                        { "name": "type", "length": 4 },
+                        { "name": "separator", "length": 1 },
+                        { "name": "description", "length": 14 },
+                        { "name": "date", "length": 10}
+                    ],
+                    "control": {
+                        "header": true,
+                        "new": true,
+                        "attr": "header"
+                    }
+                },
+                {
+                    "match": "^011A",
+                    "struct": [
+                        { "name": "type", "length": 4 },
+                        { "name": "separator", "length": 1 },
+                        { "name": "description", "length": 6 },
+                        { "name": "amount", "length": 12 },
+                        { "name": "sign", "length": 1, "skip": 2 },
+                        { "name": "date", "length": 10}
+                    ],
+                    "control": {
+                        "new": true,
+                        "type": "m.a",
+                        "attr": "transaction"
+                    }
+                },
+                {
+                    "match": "^073E",
+                    "struct": [
+                        { "name": "type", "length": 4 },
+                        { "name": "separator", "length": 1, "skip": 1 },
+                        { "name": "description", "length": 6 },
+                        { "name": "rows", "length": 4 },
+                        { "name": "startBalance", "length": 12 },
+                        { "name": "endBalance", "length": 12 },
+                        { "name": "date", "length": 10 }
+                    ],
+                    "control": {
+                        "footer": true,
+                        "new": true,
+                        "attr": "footer"
+                    }
+                },
+                {
+                    "match": "^011B",
+                    "struct": [
+                        { "name": "type", "length": 4 },
+                        { "name": "separator", "length": 1 },
+                        { "name": "description", "length": 12 },
+                        { "name": "referenceLabel", "length": 4, "skip": 1 },
+                        { "name": "reference", "length": 6, "skip": 1 },
+                        { 
+                            "name": "additional", 
+                            "sub": [
+                                { "name": "referenceLabel", "length": 3 },
+                                { "name": "referenceName", "length": 1, "skip": 1 },
+                                { "name": "reference", "length": 3, "skip": 1 }
+                            ], 
+                            "min": 1, 
+                            "max": 99 
+                        }
+                    ],
+                    "control": {
+                        "attr": "details"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "message": [
+            {
+                "type": "m.a",
+                "script": "myScript"
+            }
+        ]
+    }
+]
