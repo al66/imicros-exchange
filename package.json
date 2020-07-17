@@ -48,7 +48,7 @@
     "json-templater": "^1.2.0",
     "json-templates": "^2.4.0",
     "json4json": "^1.1.0",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.19",
     "neo4j-driver": "^1.7.5",
     "split": "^1.0.1",
     "stream-chain": "^2.1.0",
